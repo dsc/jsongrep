@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: jsongrep
+Version: 0.0.1
+Summary: Search and select bits out of a JSON document.
+Home-page: http://tire.less.ly/hacking/jsongrep
+Author: David Schoonover
+Author-email: dsc@less.ly
+License: UNKNOWN
+Description: 
+        Search and select bits out of a JSON document.
+        
+Platform: UNKNOWN
