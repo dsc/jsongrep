@@ -124,7 +124,8 @@ def main():
         usage   = 'usage: %prog [options] [PATTERN | -e PATTERN [-e PATTERN ...]] [FILE]', 
         description = 'Parses JSON data structurally to select a subset of data.',
         version = '%prog'+" %i.%i.%i" % __version__)
-    parser.add_option("-e", "--pattern", action="append", dest="patterns", help="Additional patterns to match.")
+    parser.add_option("-e", "--pattern", action="append", dest="patterns", default=[],
+        help="Additional patterns to match.")
     # parser.add_option("-E", "--regexp", default=Pattern.regexp, action="store_true",
     #     help="Interpret PATTERN as a Python regular expression. [default: %default]")
     # parser.add_option("-s", "--strict", default=Pattern.strict, action="store_true", 
