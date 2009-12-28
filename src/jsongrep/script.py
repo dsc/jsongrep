@@ -6,8 +6,7 @@ __copyright__ = 'Copyright (c) 2009 Clearspring Technologies, Inc. All rights re
 __version__   = (0, 0, 1)
 
 import sys, os, os.path, json
-from jsongrep._jsongrep import Pattern, Query
-from lessly import Bunch
+from jsongrep.util.bunch import Bunch
 
 class JSONGrepOptions(Bunch):
     "Options parser for jsongrep."
@@ -107,6 +106,7 @@ class JSONGrep(object):
 
 def main():
     from optparse import OptionParser
+    DEFAULTS = JSONGrepOptions.DEFAULTS
     
     parser = OptionParser(
         usage   = 'usage: %prog [options] [PATTERN | -e PATTERN [-e PATTERN ...]] [FILE]', 
@@ -134,14 +134,15 @@ def main():
     
     (options, args) = parser.parse_args()
     
-    # TODO: parse PATTERN FILE | -e PATTERN FILE | PATTER | -e PATTERN
-    if len(args) != 2:
-        parser.error("incorrect number of arguments")
+    try:
+        opts = JSONGrepOptions(*args, **options.__dict__)
+    except ValueError as e:
+        parser.error(e.msg)
+        return 1
     
-    opts = JSONGrepOptions(*args, **options.__dict__)
     grep = JSONGrep(options=opts)
     grep.compile()
-    print '\n'.join( ' '.join(matches) for matches in grep.process() )
+    print '\n'.join( '\n'.join(matches) for matches in grep.process() )
     
     return 0
 

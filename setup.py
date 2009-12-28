@@ -4,20 +4,23 @@ from setuptools import setup, find_packages
 setup(
     name = "jsongrep",
     version = "0.0.1",
-    description = "Search and select bits out of a JSON document.",
+    description = "jsongrep Console Tool",
     long_description = """
         Search and select bits out of a JSON document.
     """,
-    url = "http://tire.less.ly/hacking/jsongrep",
+    # url = "http://tire.less.ly/hacking/jsongrep",
+    url = "http://github.com/dsc/jsongrep",
     
     author = "David Schoonover",
     author_email = "dsc@less.ly",
     
-    package_dir = {'':'src'},
-    packages=find_packages('src', exclude=['ez_setup']),
+    packages=['jsongrep', 'jsongrep.glob', 'jsongrep.regexp'],
     zip_safe = True,
     install_requires=[
         "lepl>=3.3.2",
     ],
-    classifiers = [],
+    classifiers=[],
+    entry_points={
+        'console_scripts': ['jsongrep = jsongrep']
+    },
 )
