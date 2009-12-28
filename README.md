@@ -40,7 +40,11 @@ jsongrep requires Python >= 2.6. To install:
     $ git clone git://github.com/dsc/jsongrep.git
     $ easy_install jsongrep
 
-This will fetch the dependencies and install the script.
+Or if you have [pip](http://pip.openplans.org/) installed:
+
+    $ pip install -e git://github.com/dsc/jsongrep.git#egg=jsongrep
+
+Both will fetch the dependencies and install the script.
 
 
 ## Usage
