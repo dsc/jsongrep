@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "jsongrep",
-    version = "0.0.1",
+    version = "0.1.0",
     description = "jsongrep Console Tool",
     long_description = """
         Search and select bits out of a JSON document.
@@ -14,7 +14,7 @@ setup(
     author = "David Schoonover",
     author_email = "dsc@less.ly",
     
-    packages=['jsongrep', 'jsongrep.glob', 'jsongrep.regexp'],
+    packages=['jsongrep', 'jsongrep.glob', 'jsongrep.regexp', 'jsongrep.util'],
     zip_safe = True,
     install_requires=[
         "lepl>=3.3.2",

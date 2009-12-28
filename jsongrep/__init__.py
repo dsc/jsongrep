@@ -5,7 +5,19 @@ __date__      = '2009-12-24'
 __copyright__ = 'Copyright (c) 2009 Clearspring Technologies, Inc. All rights reserved.'
 __version__   = (0, 0, 1)
 
-import sys, os, os.path, json
+import sys, os, os.path
+
+# Look for a json parser
+try:
+    import json
+except:
+    try:
+        import simplejson as json
+    except:
+        print "jsongrep: your python installation does not appear to have a json parser installed. Try installing simplejson?"
+        sys.exit(1)
+
+
 from jsongrep.util.bunch import Bunch
 
 class JSONGrepOptions(Bunch):

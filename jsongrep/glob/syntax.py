@@ -40,11 +40,3 @@ parts   += pat & sep & parts | pat
 pattern  = parts | pat > Pattern
 
 
-if __name__ == '__main__':
-    import sys
-    if len(sys.argv) > 1:
-        arg = sys.argv[1]
-    else:
-        arg = 'f?o*?o.*.([09].(**.baz))'
-    print "arg=%s" % arg
-    print pattern.parse(arg)[0]
