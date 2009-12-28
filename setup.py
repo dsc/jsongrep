@@ -21,6 +21,6 @@ setup(
     ],
     classifiers=[],
     entry_points={
-        'console_scripts': ['jsongrep = jsongrep']
+        'console_scripts': ['jsongrep = jsongrep:main']
     },
 )
