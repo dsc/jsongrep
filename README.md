@@ -38,7 +38,7 @@ Dot is the field separator.
 jsongrep requires Python >= 2.6. To install:
 
     $ git clone git://github.com/dsc/jsongrep.git
-    $ easy_install jsongrep/setup.py
+    $ easy_install jsongrep
 
 This will fetch the dependencies and install the script.
 
