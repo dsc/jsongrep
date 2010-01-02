@@ -2,6 +2,9 @@
 
 jsongrep is a shell tool for extracting values from [JSON](http://json.org) documents. It supports shell-like globbing for property names, and emits the matched values separated by newlines.
 
+
+## Examples
+
 Suppose you have a JSON document like the one in `tests/ongz.json` which looks like this:
 
     {
@@ -13,16 +16,23 @@ Suppose you have a JSON document like the one in `tests/ongz.json` which looks l
         "blah" : {
             "lol" : "gongz"
         },
-        "arr" : [ "a", "b", "c" ]
+        "arr" : [
+            "a", "b", "c", "d", "e", 
+            "f", "g", "h", "i", "j", 
+            "k", "l", "m", "n", "o", 
+            "p", "q", "r", "s", "t", 
+            "u", "v", "w", "x", "y", 
+            "z"
+        ]
     }
 
-jsongrep will let you match structural patterns, where `.` (dot) separates nested properties. Here, we search for all the second-level properties which begin with `l`, provided their first level properties begin with `b`:
+jsongrep will let you match structural patterns, where `.` (dot) separates nested properties. 
+
+Let's glob on property names:
 
     $ jsongrep 'b*.l*' tests/ongz.json
     gongz
     songz
-
-(Heh, the pattern is probably easier to grok than the description.)
 
 Works on arrays, too:
 
@@ -30,6 +40,23 @@ Works on arrays, too:
     a
     b
     c
+    d
+    e
+    f
+    g
+    h
+    i
+    j
+
+Note that we're still globbing, even though arrays have numeric indices:
+
+    jsongrep 'arr.2?' tests/ongz.json
+    u
+    v
+    w
+    x
+    y
+    z
 
 If you specify a JSON subtree, that's what you get back.
 

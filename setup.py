@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "jsongrep",
-    version = "0.1.0",
+    version = "0.1.1",
     description = "jsongrep Console Tool",
     long_description = """
         Search and select bits out of a JSON document.
