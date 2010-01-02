@@ -14,29 +14,34 @@ from jsongrep.glob.matchers import *
 sep      = ~Token('[ \t\.:]')
 part     = Token('[^ \t\.:\(\)]+')
 
+
+char     = Letter() | Digit() | '$' | '_'
+idchar   = char | '*' | '?'
+numbers  = Digit()[1:,...]
 parts    = Delayed()
 
 
-star     = part('*') > StarPart
-starstar = part('**') > StarStarPart
+index    = part( numbers )                          > IndexPart
+indexcls = part( Literal('[') & numbers & ']' )
+indexpat = (part(numbers | '*' | '?') | indexcls)[1:,...] >> IndexPatternPart
 
 
-name_hd  = Letter() | '$' | '_'
-name_tl  = name_hd | Digit()
-name     = part(Word( name_hd, name_tl )) > NamePart
-
-idclass  = Literal('[') & Word(name_tl) & ']'
-idpat_hd = name_hd | '*' | '?'
-idpat_tl = name_tl | '*' | '?'
-idpat    = Word(idpat_hd, idpat_tl)
-namepat  = part( (idclass | idpat)[1:,...] ) >> NamePatternPart
-
-# index  = Token('[0-9]+') | Token('\[[0-9]+\]') > IndexPart
-
-pat      = starstar | star | name | namepat
+name     = part( Word(char) )                       > NamePart
+idcls    = Literal('[') & Word(char) & ']'
+idpat    = Word(idchar)
+namepat  = part( (idcls | idpat)[1:,...] )          >> NamePatternPart
 
 
+star     = part('*')                                > StarPart
+starstar = part('**')                               > StarStarPart
+
+
+pat      = Or(
+                starstar, star,
+                index, indexpat,
+                name, namepat
+            )
 parts   += pat & sep & parts | pat
-pattern  = parts | pat > Pattern
+pattern  = parts | pat                              > Pattern
 
 

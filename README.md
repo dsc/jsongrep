@@ -12,16 +12,32 @@ Suppose you have a JSON document like the one in `tests/ongz.json` which looks l
         },
         "blah" : {
             "lol" : "gongz"
-        }
+        },
+        "arr" : [ "a", "b", "c" ]
     }
 
-jsongrep will let you match structural patterns. Here, we search for all the second-level properties which begin with `l`, provided their first level properties begin with `b`:
+jsongrep will let you match structural patterns, where `.` (dot) separates nested properties. Here, we search for all the second-level properties which begin with `l`, provided their first level properties begin with `b`:
 
     $ jsongrep 'b*.l*' tests/ongz.json
     gongz
     songz
 
 (Heh, the pattern is probably easier to grok than the description.)
+
+Works on arrays, too:
+
+    $ jsongrep 'arr.?' tests/ongz.json
+    a
+    b
+    c
+
+If you specify a JSON subtree, that's what you get back.
+
+    $ jsongrep 'bah' tests/ongz.json 
+    {"foo": 3, "lah": "songz", "feh": true}
+
+
+## Syntax
 
 jsongrep currently supports normal shell glob patterns within property names:
 
@@ -62,7 +78,8 @@ Both will fetch the dependencies and install the script.
 
 ## TODO
 
- * Support arrays
+ * Support star-star (`**`) non-greedy matches of spanning subgraphs
+ * Support unicode, escapes in patterns
  * Support extended regexps
  * Support no-pattern-matching lookup
  * Options:
