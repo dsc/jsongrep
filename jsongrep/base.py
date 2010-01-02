@@ -1,3 +1,5 @@
+import sys, os, os.path
+
 # Look for a json parser
 try:
     import json
@@ -43,7 +45,7 @@ class JSONGrepOptions(Bunch):
         # else:
         #     self.glob = True
         #     self.regexp = self.strict = False
-        # 
+        
         if not args:
             self.file = sys.stdin
         elif len(args) > 2:
@@ -51,7 +53,10 @@ class JSONGrepOptions(Bunch):
         elif len(args) == 2:
             pattern, file = args
             self.patterns.insert(0, pattern)
-            self.file = open(file, 'rU')
+            if file == '-':
+                self.file = sys.stdin
+            else:
+                self.file = open(file, 'rU')
         elif args:
             first = args[0]
             if os.path.exists(first):
@@ -107,13 +112,13 @@ class JSONGrep(object):
             out.append( matches )
         return out
     
-    def __str__(self):
+    def format(self):
         if self.matches:
-            return '\n'.join( '\n'.join( 
-                    json.dumps(m) if isinstance(m, (dict,list)) else str(m) 
+            return u'\n'.join( u'\n'.join( 
+                    unicode(json.dumps(m) if isinstance(m, (dict,list)) else m) 
                 for m in matches ) 
                     for matches in self.matches )
         else:
-            return ""
+            return u''
 
 

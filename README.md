@@ -5,7 +5,20 @@ jsongrep is a shell tool for extracting values from [JSON](http://json.org) docu
 
 ## Examples
 
-Suppose you have a JSON document like the one in `tests/ongz.json` which looks like this:
+Let's start with a real-world example.
+
+Let's grab the even tweets from the last 10 pulled from Twitter's JSON feed:
+
+    $ curl -s 'http://twitter.com/statuses/public_timeline.json' | jsongrep '[02468].text'
+    それでｒはみなさｌあごきげんよい
+    ARGHHHHHH. facebook is being gay
+    5-5 in the darts between Barney and Whitlock. Amazing. #darts
+    I wonder if I'm still located on 5th ave?
+    Estou de volta  a internet .... Essa chuva ñ para !   Estou de boa com a minha familia .
+
+Yeah, that's just about what I expected.
+
+Now suppose you have a JSON document like the one in `tests/ongz.json` which looks like this:
 
     {
         "bah" : {

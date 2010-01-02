@@ -3,12 +3,16 @@
 __author__    = 'David Schoonover <david@clearspring.com>'
 __date__      = '2009-12-24'
 __copyright__ = 'Copyright (c) 2009 Clearspring Technologies, Inc. All rights reserved.'
-__version__   = (0, 0, 2)
+__version__   = (0, 1, 1)
 __all__ = ( 'main', 'JSONGrepOptions', 'JSONGrep' )
 
-import sys, os, os.path
+import sys
 from jsongrep.base import JSONGrepOptions, JSONGrep
 
+# handle fucking terminal string encoding
+import sys, codecs, locale
+sys.stdout = codecs.open('/dev/stdout', 'w', 
+    sys.stdout.encoding or locale.getpreferredencoding().lower() or 'utf-8')
 
 
 def main():
@@ -25,7 +29,6 @@ def main():
     #     help="Interpret PATTERN as a Python regular expression. [default: %default]")
     # parser.add_option("-s", "--strict", default=Pattern.strict, action="store_true", 
     #     help="Interpret PATTERN as a bare string, with no pattern matching. [default: %default]")
-    # # TODO: glob, regex, strict to be mutually exclusive
     # parser.add_option("-g", "--glob", default=None, action="store_false",
     #     help="Interpret PATTERN as a shell-style glob expression. "
     #          "If specified, overrides --regexp and --strict. [default: %default]")
@@ -51,7 +54,8 @@ def main():
     grep = JSONGrep(options=opts)
     grep.compile()
     grep.process()
-    print grep
+    sys.stdout.write( grep.format() )
+    sys.stdout.write( u'\n' )
     
     return 0
 
