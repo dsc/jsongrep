@@ -14,11 +14,12 @@ setup(
     author = "David Schoonover",
     author_email = "dsc@less.ly",
     
-    packages=['jsongrep', 'jsongrep.glob', 'jsongrep.regexp', 'jsongrep.util'],
+    packages=['jsongrep', 'jsongrep.glob', 'jsongrep.regexp'],
     zip_safe = True,
     install_requires=[
         "lepl>=3.3.2",
-        "chardet>=1.0.1"
+        "bunch>=1.0.0",
+        "chardet>=1.0.1",
     ],
     classifiers=[],
     entry_points={

@@ -10,8 +10,8 @@ except:
         print "jsongrep: your python installation does not appear to have a json parser installed. Try installing simplejson?"
         sys.exit(1)
 
+from bunch import Bunch
 
-from jsongrep.util.bunch import Bunch
 
 
 class JSONGrepOptions(Bunch):
