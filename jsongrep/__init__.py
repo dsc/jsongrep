@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
-__author__    = 'David Schoonover <david@clearspring.com>'
-__date__      = '2009-12-24'
-__copyright__ = 'Copyright (c) 2009 Clearspring Technologies, Inc. All rights reserved.'
-__version__   = (0, 1, 1)
+__author__    = 'David Schoonover <dsc@less.ly>'
+__version__   = (0, 1, 2)
+__license__   = 'MIT'
+__homepage__  = 'http://github.com/dsc/jsongrep'
 __all__ = ( 'main', 'JSONGrepOptions', 'JSONGrep' )
 
 import sys
