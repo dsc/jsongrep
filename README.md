@@ -94,13 +94,19 @@ Dot is the field separator.
 jsongrep requires Python >= 2.6. To install:
 
     $ git clone git://github.com/dsc/jsongrep.git
-    $ easy_install jsongrep
+    $ cd jsongrep
+    $ python setup.py install
 
-Or if you have [pip](http://pip.openplans.org/) installed:
+The easiest way is to use [pip](http://pip.openplans.org/):
 
     $ pip install -e git://github.com/dsc/jsongrep.git#egg=jsongrep
 
-Both will fetch the dependencies and install the script.
+If you prefer `easy_install`:
+
+    $ git clone git://github.com/dsc/jsongrep.git
+    $ easy_install jsongrep
+
+All of these options will fetch the dependencies and install the script.
 
 
 ## Usage
@@ -114,6 +120,10 @@ Both will fetch the dependencies and install the script.
       -h, --help            show this help message and exit
       -e PATTERNS, --pattern=PATTERNS
                             Additional patterns to match.
+      -D, --detect-encoding
+                            Attempts to detect the character encoding of input if
+                            LC_TYPE and file.encoding provide insufficient hints.
+                            (Slow) [default: False]
 
 
 ## TODO
@@ -131,5 +141,5 @@ Both will fetch the dependencies and install the script.
 
 ## Feedback
 
-Open a ticket on github, or send me an email at [dsc@less.ly](mailto:dsc@less.ly).
+Open a ticket on [github](http://github.com/dsc/jsongrep), or send me an email at [dsc@less.ly](mailto:dsc@less.ly).
 
