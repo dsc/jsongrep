@@ -42,6 +42,8 @@ def main():
     #     help="Separator inserted between matches. [default: %default]")
     # parser.add_option("-q", "--quote", default=Query.quote, action="store_true",
     #     help="Adds quotes to matched string values. [default: %default]")
+    parser.add_option("-D", "--detect-encoding", default=False, action="store_true",
+        help="Attempts to detect the character encoding of input if LC_TYPE and file.encoding provide insufficient hints. (Slow) [default: %default]")
     
     (options, args) = parser.parse_args()
     

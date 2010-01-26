@@ -7,7 +7,7 @@ jsongrep is a shell tool for extracting values from [JSON](http://json.org) docu
 
 Let's start with a real-world example.
 
-Let's grab the even tweets from the last 10 pulled from Twitter's JSON feed:
+Let's grab the even tweets from the last 10 pulled from [Twitter's JSON feed](http://apiwiki.twitter.com/Twitter-REST-API-Method:-statuses-public_timeline):
 
     $ curl -s 'http://twitter.com/statuses/public_timeline.json' | jsongrep '[02468].text'
     それでｒはみなさｌあごきげんよい

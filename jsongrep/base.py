@@ -24,6 +24,7 @@ class JSONGrepOptions(Bunch):
         'splitter'  : None,
         'out_sep'   : '\n',
         'quote'     : False,
+        'detect_encoding' : False,
         
         'patterns'  : None,
         'file'      : None,
@@ -59,7 +60,7 @@ class JSONGrepOptions(Bunch):
                 self.file = open(file, 'rU')
         elif args:
             first = args[0]
-            if os.path.exists(first):
+            if self.patterns and os.path.exists(first) and os.path.isfile(first):
                 self.file = open(first, 'rU')
             else:
                 self.patterns.insert(0, first)
@@ -90,8 +91,23 @@ class JSONGrep(object):
         self.patterns = [ pattern.parse(pat)[0] for pat in (pats or self.patterns) ]
         return self.patterns
     
+    def load(self, fp):
+        if self.options.detect_encoding:
+            self.loads(fp.read())
+        else:
+            self.json = json.load(fp)
+    
+    def loads(self, s):
+        if self.options.detect_encoding:
+            import chardet
+            enc = chardet.detect(s)
+            #TODO: -v to write guess to stderr
+            self.json = json.loads(s.decode(enc.get('encoding', 'utf8') if enc else 'utf8'))
+        else:
+            self.json = json.loads(s)
+    
     def process(self, fp=None):
-        self.json = json.load(fp or self.file)
+        self.load(self.file)
         matches = [self.json]
         self.matches = out = []
         

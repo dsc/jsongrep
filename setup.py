@@ -18,6 +18,7 @@ setup(
     zip_safe = True,
     install_requires=[
         "lepl>=3.3.2",
+        "chardet>=1.0.1"
     ],
     classifiers=[],
     entry_points={
