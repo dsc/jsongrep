@@ -1,13 +1,12 @@
-# jsongrep - A shell tool to search and select bits out of JSON documents.
-
-jsongrep is a shell tool for extracting values from [JSON](http://json.org) documents. It supports shell-like globbing for property names, and emits the matched values separated by newlines.
+jsongrep is a shell tool for extracting values from JSON documents. It supports shell-like globbing for property names, and emits the matched values separated by newlines.
 
 
-## Examples
+Examples
+--------
 
 Let's start with a real-world example.
 
-Let's grab the even tweets from the last 10 pulled from [Twitter's JSON feed](http://apiwiki.twitter.com/Twitter-REST-API-Method:-statuses-public_timeline):
+Let's grab the even tweets from the last 10 pulled from Twitter's JSON feed http://apiwiki.twitter.com/Twitter-REST-API-Method:-statuses-public_timeline ::
 
     $ curl -s 'http://twitter.com/statuses/public_timeline.json' | jsongrep '[02468].text'
     それでｒはみなさｌあごきげんよい
@@ -18,7 +17,7 @@ Let's grab the even tweets from the last 10 pulled from [Twitter's JSON feed](ht
 
 Yeah, that's just about what I expected.
 
-Now suppose you have a JSON document like the one in `tests/ongz.json` which looks like this:
+Now suppose you have a JSON document like the one in ``tests/ongz.json`` which looks like this::
 
     {
         "bah" : {
@@ -39,15 +38,15 @@ Now suppose you have a JSON document like the one in `tests/ongz.json` which loo
         ]
     }
 
-jsongrep will let you match structural patterns, where `.` (dot) separates nested properties. 
+jsongrep will let you match structural patterns, where ``.`` (dot) separates nested properties.
 
-Let's glob on property names:
+Let's glob on property names::
 
     $ jsongrep 'b*.l*' tests/ongz.json
     gongz
     songz
 
-Works on arrays, too:
+Works on arrays, too::
 
     $ jsongrep 'arr.?' tests/ongz.json
     a
@@ -61,7 +60,7 @@ Works on arrays, too:
     i
     j
 
-Note that we're still globbing, even though arrays have numeric indices:
+Note that we're still globbing, even though arrays have numeric indices::
 
     $ jsongrep 'arr.2?' tests/ongz.json
     u
@@ -71,15 +70,16 @@ Note that we're still globbing, even though arrays have numeric indices:
     y
     z
 
-If you specify a JSON subtree, that's what you get back.
+If you specify a JSON subtree, that's what you get back::
 
-    $ jsongrep 'bah' tests/ongz.json 
+    $ jsongrep 'bah' tests/ongz.json
     {"foo": 3, "lah": "songz", "feh": true}
 
 
-## Syntax
+Syntax
+------
 
-jsongrep currently supports normal shell glob patterns within property names:
+jsongrep currently supports normal shell glob patterns within property names::
 
     ?       Matches any one character
     *       Matches any number of characters within a field
@@ -89,27 +89,10 @@ jsongrep currently supports normal shell glob patterns within property names:
 Dot is the field separator.
 
 
-## Installation
+Usage
+-----
 
-jsongrep requires Python >= 2.6. To install:
-
-    $ git clone git://github.com/dsc/jsongrep.git
-    $ cd jsongrep
-    $ python setup.py install
-
-The easiest way is to use [pip](http://pip.openplans.org/):
-
-    $ pip install -e git://github.com/dsc/jsongrep.git#egg=jsongrep
-
-If you prefer `easy_install`:
-
-    $ git clone git://github.com/dsc/jsongrep.git
-    $ easy_install jsongrep
-
-All of these options will fetch the dependencies and install the script.
-
-
-## Usage
+::
 
     Usage: jsongrep [options] [PATTERN | -e PATTERN [-e PATTERN ...]] [FILE]
 
@@ -126,20 +109,22 @@ All of these options will fetch the dependencies and install the script.
                             (Slow) [default: False]
 
 
-## TODO
+TODO
+----
 
- * Support star-star (`**`) non-greedy matches of spanning subgraphs
- * Support unicode, escapes in patterns
- * Support extended regexps
- * Support no-pattern-matching lookup
- * Options:
+* Support star-star (``**``) non-greedy matches of spanning subgraphs
+* Support unicode, escapes in patterns
+* Support extended regexps
+* Support no-pattern-matching lookup
+* Options:
     * Property separator in patterns (. by default)
     * Output separator (newline by default)
     * Quote string values in output?
     * 1/0 vs true/false for bool values in output?
 
 
-## Feedback
+Feedback
+--------
 
-Open a ticket on [github](http://github.com/dsc/jsongrep), or send me an email at [dsc@less.ly](mailto:dsc@less.ly).
+Open a ticket at http://github.com/dsc/jsongrep , or send me an email at dsc@less.ly .
 

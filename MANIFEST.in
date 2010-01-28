@@ -1,0 +1,4 @@
+include LICENSE.txt
+include README.md
+recursive-include docs *.txt *.rst *.html *.css *.png *.gif
+recursive-include tests *.json *.py
