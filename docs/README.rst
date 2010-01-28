@@ -9,11 +9,10 @@ Let's start with a real-world example.
 Let's grab the even tweets from the last 10 pulled from Twitter's JSON feed http://apiwiki.twitter.com/Twitter-REST-API-Method:-statuses-public_timeline ::
 
     $ curl -s 'http://twitter.com/statuses/public_timeline.json' | jsongrep '[02468].text'
-    それでｒはみなさｌあごきげんよい
     ARGHHHHHH. facebook is being gay
     5-5 in the darts between Barney and Whitlock. Amazing. #darts
     I wonder if I'm still located on 5th ave?
-    Estou de volta  a internet .... Essa chuva ñ para !   Estou de boa com a minha familia .
+    Estou de volta  a internet .... Essa chuva n para !   Estou de boa com a minha familia .
 
 Yeah, that's just about what I expected.
 
