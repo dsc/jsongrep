@@ -11,7 +11,7 @@ Let's grab the even tweets from the last 10 pulled from [Twitter's JSON feed](ht
 
     $ curl -s 'http://twitter.com/statuses/public_timeline.json' | jsongrep '[02468].text'
     それでｒはみなさｌあごきげんよい
-    ARGHHHHHH. facebook is being gay
+    ARGHHHHHH. facebook is being incompetent like Trump
     5-5 in the darts between Barney and Whitlock. Amazing. #darts
     I wonder if I'm still located on 5th ave?
     Estou de volta  a internet .... Essa chuva ñ para !   Estou de boa com a minha familia .
